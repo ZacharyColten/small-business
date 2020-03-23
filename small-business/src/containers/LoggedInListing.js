@@ -1,18 +1,17 @@
-// import { connect } from "react-redux";
-// import Import from "../components/Import";
-// import { fetchMakes, deleteMake } from "../redux/actions";
+import { connect } from "react-redux";
+import LoggedInListing from "../components/LoggedInListing";
+import { deleteListing } from "../redux/actions";
 
-// const mapStateToProps = state => {
-//   return {
-//     makes: state.makes
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    listings: state.listings
+  };
+};
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchMakes: () => dispatch(fetchMakes()),
-//     deleteMake: index => dispatch(deleteMake(index))
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteListing: index => dispatch(deleteListing(index))
+  };
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Import);
+export default connect(mapStateToProps, mapDispatchToProps)(LoggedInListing);

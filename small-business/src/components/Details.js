@@ -1,38 +1,49 @@
-// import React from 'react'
-// import cars from '../cars.json'
-// import { Card, CardContent, CardActions, Divider, Container, Paper, Chip, Typography } from '@material-ui/core'
-// // Container, Paper, Chip //
+import React, { useState, useEffect } from 'react'
+import { Card, CardContent, CardActions, Divider, Container, Paper, Chip, Typography } from '@material-ui/core'
+import GoogleMap from "./GoogleMap";
 
-// const Car = (props) => {
-//     let id = props.match.params.id
-//     const car = cars.find(x => x.id == id)
-//     return (
-//         <div style = {{"display":"flex", "justify-content":"center", "align-items":"center"}}>
-//             <Container style = {{"maxWidth":"sm"}}>
-//                 <Paper elevation={3}>
-//             <Card style = {{"minWidth":"275"}}>
-//                 <CardContent>
-//                 <Typography style = {{"fontSize": "14", "display": 'inline-block',
-//     "margin": '2px'}}>
-//           {car.Name}
-          
-//         </Typography>
-//                 <Chip label={Object.keys(car)[0] + ": " + car.id}/>
-//                 <Chip label={Object.keys(car)[1] + ": " + car.Name}/>
-//                 <Chip label={Object.keys(car)[2] + ": " + car.Miles_per_Gallon}/>
-//                 <Chip label={Object.keys(car)[3] + ": " + car.Cylinders}/>
-//                 <Chip label={Object.keys(car)[4] + ": " + car.Displacement}/>
-//                 <Chip label={Object.keys(car)[5] + ": " + car.Horsepower}/>
-//                 <Chip label={Object.keys(car)[6] + ": " + car.Weight_in_lbs}/>
-//                 <Chip label={Object.keys(car)[7] + ": " + car.Acceleration}/>
-//                 <Chip label={Object.keys(car)[8] + ": " + car.Year}/>
-//                 <Chip label={Object.keys(car)[9] + ": " + car.Origin}/>
-//         </CardContent>
-//         </Card>
-//         </Paper>
-//         </Container>
-//     </div>
-//     )
-// }
 
-// export default Car
+const Details = (props) => {
+    let id = props.match.params.id
+    const listing = props.listings.find(x => x.id == id)
+    const [lat, setLat] = useState(30.266666);
+    const [lng, setLng] = useState(-97.73333);
+
+    useEffect(() => {
+        async function google() {
+            const url = `https://maps.google.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_KEY}&address=${listing.address}`
+            const response = await fetch(url);
+            const data = await response.json();
+            setLat(data.results[0].geometry.location.lat);
+            setLng(data.results[0].geometry.location.lng);
+        }
+        google();
+    });
+
+    return (
+        <div style={{ "display": "flex", "justify-content": "center", "align-items": "center", "margin": "20px" }}>
+            <Container style={{ "maxWidth": "sm" }}>
+
+
+                <Typography style={{ "fontSize": "30px", "display": "flex", "justify-content": "center", "align-items": "center", "margin": "20px" }}>
+                    {listing.name}
+                </Typography>
+                <Typography style={{ "fontSize": "20px", "display": "flex", "justify-content": "center", "align-items": "center", "margin": "20px" }}>
+                    {listing.address}
+                </Typography>
+                <Typography style={{ "fontSize": "20px", "display": "flex", "justify-content": "center", "align-items": "center", "margin": "20px" }}>
+                    {listing.hours}
+                </Typography>
+                <Typography style={{ "display": "flex", "justify-content": "center", "align-items": "center", "margin": "20px" }}>
+                    {listing.description}
+                </Typography>
+                <br></br>
+
+                <GoogleMap lat={lat} lng={lng} />
+            </Container>
+
+        </div>
+    )
+}
+
+export default Details

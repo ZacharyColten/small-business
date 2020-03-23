@@ -1,55 +1,51 @@
-// import React from 'react'
-// import {
-//     Container,
-//     Table,
-//     TableBody,
-//     TableCell,
-//     TableHead,
-//     TableRow
-// } from '@material-ui/core'
-// import DeleteIcon from '@material-ui/icons/Delete'
-// import AddCar from '../containers/AddCar'
- 
-// const Listing = (props) => {
-//     return (
-//         <Container maxWidth="lg" className="car-container">
-//             <h4>Welcome, {props.user.username}</h4>
-//             <div className="flex-container">
-//                 <AddCar carTotal={props.cars.length} />
-//             </div>
-//             <Table>
-//                 <TableHead>
-//                     <TableRow>
-//                         <TableCell>Id</TableCell>
-//                         <TableCell>Make/Model</TableCell>
-//                         <TableCell>MPG</TableCell>
-//                         <TableCell>Cylinders</TableCell>
-//                         <TableCell>Horsepower</TableCell>
-//                         <TableCell>Delete</TableCell>
-//                     </TableRow>
-//                 </TableHead>
-//                 <TableBody>
-//                 {props.cars.map((car, idx) => (
-//                     <TableRow key={car.id}>
-//                         <TableCell component="th" scope="row">
-//                             {car.id}
-//                         </TableCell>
-//                         <TableCell>{car["name"]}</TableCell>
-//                         <TableCell>{car["mpg"]}</TableCell>
-//                         <TableCell>{car["cylinders"]}</TableCell>
-//                         <TableCell>{car["horsepower"]}</TableCell>
-//                         <TableCell>
-//                             <DeleteIcon
-//                                 // add onClick method here
-//                                 onClick={() => props.removeCar(idx)}
-//                                 className="icon text-red" />
-//                         </TableCell>
-//                     </TableRow>
-//                 ))}
-//                 </TableBody>
-//             </Table>
-//         </Container>
-//     )
-// }
+import React from 'react'
+import {
+    Container,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow
+} from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 
-// export default Listing
+import { Link } from 'react-router-dom'
+
+const Listing = (props) => {
+    return (
+        <Container maxWidth="lg" className="car-container">
+            <div className="flex-container">
+            </div>
+            <Link style={{ "display": "flex", "color": "red", "justify-content": "center", "align-items": "center" }} to="/addlisting">-click here to add listing-</Link>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Name (click for map/details)</TableCell>
+                        <TableCell>Description</TableCell>
+                        <TableCell>Hours</TableCell>
+                        <TableCell>Address</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {props.listings.map((listing, idx) => (
+                        <TableRow key={listing.id}>
+                            <TableCell style={{ "color": "#FF8C00" }}><Link to={`/details/${listing.id}`}>{listing.name}</Link></TableCell>
+                            <TableCell>{listing.description}</TableCell>
+                            <TableCell>{listing.hours}</TableCell>
+                            <TableCell>{listing.address}</TableCell>
+                            <TableCell>
+                                <DeleteIcon
+                                    // add onClick method here
+                                    onClick={() => props.deleteListing(idx)}
+                                    className="icon text-red" />
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </Container>
+    )
+}
+
+export default Listing
+

@@ -1,13 +1,12 @@
-// import { connect } from 'react-redux'
-// import AddCar from '../components/AddCar'
-// import {addCar} from '../redux/actions'
-// import {removeCar} from '../redux/actions'
+import { connect } from 'react-redux'
+import AddListing from '../components/AddListing'
+import { addListing } from '../redux/actions'
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addCar: (car) => dispatch(addCar(car)),
-//         removeCar: (index) => dispatch(removeCar(index))
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addListing: (listing) => dispatch(addListing(listing)),
 
-// export default connect(null, mapDispatchToProps)(AddCar)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddListing)

@@ -7,35 +7,31 @@ import {
     TableHead,
     TableRow
 } from '@material-ui/core'
-import Details from '../containers/Details'
- 
+import { Link } from 'react-router-dom'
+
 const Listing = (props) => {
     return (
         <Container maxWidth="lg" className="car-container">
-            <h4>Welcome</h4>
             <div className="flex-container">
             </div>
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Name</TableCell>
+                        <TableCell>Name (click for map/details)</TableCell>
                         <TableCell>Description</TableCell>
                         <TableCell>Hours</TableCell>
                         <TableCell>Address</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {props.listings.map((listing, idx) => (
-                    <TableRow key={listing.id}>
-                        <TableCell component="th" scope="row">
-                            {listing.id}
-                        </TableCell>
-                        <TableCell>{listing["name"]}</TableCell>
-                        <TableCell>{listing["description"]}</TableCell>
-                        <TableCell>{listing["hours"]}</TableCell>
-                        <TableCell>{listing["address"]}</TableCell>
-                    </TableRow>
-                ))}
+                    {props.listings.map((listing, idx) => (
+                        <TableRow key={listing.id}>
+                            <TableCell style={{ "color": "#FF8C00" }}><Link to={`/details/${listing.id}`}>{listing.name}</Link></TableCell>
+                            <TableCell>{listing.description}</TableCell>
+                            <TableCell>{listing.hours}</TableCell>
+                            <TableCell>{listing.address}</TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </Container>
