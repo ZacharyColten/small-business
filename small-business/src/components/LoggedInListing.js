@@ -8,15 +8,13 @@ import {
     TableRow
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
-
+import AddListing from '../containers/AddListing'
 import { Link } from 'react-router-dom'
 
-const Listing = (props) => {
+const LoggedInListing = (props) => {
     return (
         <Container maxWidth="lg" className="car-container">
-            <div className="flex-container">
-            </div>
-            <Link style={{ "display": "flex", "color": "red", "justify-content": "center", "align-items": "center" }} to="/addlisting">-click here to add listing-</Link>
+            <AddListing />
             <Table>
                 <TableHead>
                     <TableRow>
@@ -47,5 +45,5 @@ const Listing = (props) => {
     )
 }
 
-export default Listing
+export default LoggedInListing
 

@@ -7,7 +7,7 @@ import {
     DialogTitle
 } from '@material-ui/core'
 
-class AddCar extends Component {
+class AddListing extends Component {
     state = {
         open: false,
         name: "",
@@ -47,7 +47,7 @@ class AddCar extends Component {
         return (
             <Fragment>
                 <div style={{ textAlign: 'center' }}>
-                    <h1>Add Listing:</h1>
+
                     <Button
                         variant="contained"
                         className="add-car"
@@ -98,4 +98,4 @@ class AddCar extends Component {
     }
 }
 
-export default AddCar
+export default AddListing

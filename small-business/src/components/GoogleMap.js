@@ -19,11 +19,11 @@ const GoogleMap = props => {
   };
 
   return (
-    <Container style={{ height: "400px", width: "450px" }}>
+    <Container style={{ height: "600px", width: "1200px" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
         center={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        zoom={13}
         yesIWantToUseGoogleMapApiInternals
       >
         <AnyReactComponent lat={props.lat} lng={props.lng} />

@@ -6,10 +6,23 @@ import {
   Container
 } from '@material-ui/core'
 
-class App extends Component {
+
+
+
+
+class Login extends Component {
+
   state = {
     username: '',
     password: ''
+  }
+
+
+
+  handleSubmit = () => {
+
+
+
   }
 
   handleTextChange = (e) => {
@@ -23,6 +36,9 @@ class App extends Component {
     // set cookie here
     document.cookie = "loggedIn=true;max-age=60*1000"
     // set loggedIn = true and max-age = 60*1000 (one minute)
+    const status = this.props.user.isLogged
+    console.log(status)
+    this.props.toggleLogin()
 
     window.location.replace("/listing")
   }
@@ -58,4 +74,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Login;

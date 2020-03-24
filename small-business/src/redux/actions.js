@@ -1,4 +1,9 @@
-
+export const toggleLogin = (status) => {
+    return {
+        type: 'TOGGLE_ISLOGGED',
+        value: status
+    }
+}
 
 export const addListing = (listing) => {
     return {

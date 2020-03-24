@@ -16,4 +16,16 @@ const listings = (state = [], action) => {
     }
 }
 
-export default combineReducers({ user, listings, })
+const isLogged = (state = {}, action) => {
+    switch (action.type) {
+        case 'TOGGLE_ISLOGGED':
+            return {
+                ...state,
+                isLogged: !action.value
+            }
+        default:
+            return state
+    }
+}
+
+export default combineReducers({ user, listings, isLogged })

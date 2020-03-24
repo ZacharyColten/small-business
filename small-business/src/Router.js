@@ -4,7 +4,7 @@ import cookie from 'cookie'
 import Listing from './containers/Listing'
 import LoggedInListing from './containers/LoggedInListing'
 import Details from './containers/Details'
-import Login from './components/Login'
+import Login from './containers/Login'
 import AddListing from './containers/AddListing'
 
 
