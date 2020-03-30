@@ -1,6 +1,6 @@
 export const toggleLogin = (status) => {
     return {
-        type: 'TOGGLE_ISLOGGED',
+        type: 'TOGGLE_LOGIN',
         value: status
     }
 }
@@ -32,10 +32,3 @@ export const deleteListing = (index) => {
 //             })
 //     }
 // }
-
-export const deleteMake = (index) => {
-    return {
-        type: 'DELETE_LISTING',
-        value: index
-    }
-}

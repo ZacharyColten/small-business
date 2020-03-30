@@ -11,7 +11,7 @@ const Details = (props) => {
 
     useEffect(() => {
         async function google() {
-            const url = `https://maps.google.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_KEY}&address=${listing.address}`
+            const url = `https://maps.google.com/maps/api/geocode/json?key=AIzaSyBlDLQSMTBDuG13543uFoyRHM0pTrbpbUU&address=${listing.address}`
             const response = await fetch(url);
             const data = await response.json();
             setLat(data.results[0].geometry.location.lat);

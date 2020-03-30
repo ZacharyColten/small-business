@@ -4,15 +4,14 @@ import { toggleLogin } from "../redux/actions";
 
 const mapStateToProps = state => {
     return {
-        user: state.user,
-        listings: state.listings
+        user: state.user
 
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        toggleLogin: value => dispatch(toggleLogin(value))
+        toggleLogin: status => dispatch(toggleLogin(status))
     };
 };
 

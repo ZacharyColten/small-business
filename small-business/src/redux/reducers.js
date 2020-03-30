@@ -1,7 +1,16 @@
 
 import { combineReducers } from 'redux'
 
-const user = (state = null) => state
+const user = (state = null, action) => {
+    switch (action.type) {
+        case 'TOGGLE_LOGIN':
+            return {
+                loggedIn: "hello"
+            }
+        default:
+            return state
+    }
+}
 
 const listings = (state = [], action) => {
     switch (action.type) {
@@ -16,16 +25,5 @@ const listings = (state = [], action) => {
     }
 }
 
-const isLogged = (state = {}, action) => {
-    switch (action.type) {
-        case 'TOGGLE_ISLOGGED':
-            return {
-                ...state,
-                isLogged: !action.value
-            }
-        default:
-            return state
-    }
-}
 
-export default combineReducers({ user, listings, isLogged })
+export default combineReducers({ listings, user})
