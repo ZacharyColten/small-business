@@ -1,7 +1,7 @@
 export default {
-   user: {
-      loggedIn: false
-   },
+   // user: {
+   //    loggedIn: false
+   // },
    listings: [{
       id: 1,
       name: "Home Slice Pizza",

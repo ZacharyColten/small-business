@@ -6,38 +6,38 @@ import LoggedInListing from './containers/LoggedInListing'
 import Details from './containers/Details'
 import Login from './containers/Login'
 import AddListing from './containers/AddListing'
+import { connect } from 'react-redux'
 
+class Router extends React.Component {
+    render = () => {
+        const ProtectedRoute = ({ component: Component, ...rest }) => {
+            return (
+                <Route
+                    {...rest}
+                    render={(props) => this.props.user.loggedIn
+                        ? <Component {...props} />
+                        : <Redirect to="/login" />}
+                />
+            )
+        }
 
-const checkAuth = () => {
-    const cookies = cookie.parse(document.cookie)
-    // Check the cookies for a cookie called "loggedIn"
-    return cookies["loggedIn"] ? true : false
+        return (
+            <Switch>
+                <Route exact path="/" component={this.props.user.loggedIn ? Listing : Login} />
+                <Route path="/login" component={Login} />
+                <Route path="/details/:id" component={Details} />
+                <ProtectedRoute path="/listing" component={LoggedInListing} />
+                <ProtectedRoute path="/addlisting" component={AddListing} /> />
+            </Switch>
+        );
+    }
+
 }
 
-
-
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-    return (
-        <Route
-            {...rest}
-            render={(props) => checkAuth()
-                ? <Component {...props} />
-                : <Redirect to="/login" />}
-        />
-    )
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
 }
 
-
-const Router = () => {
-    return (
-        <Switch>
-            <Route exact path="/" component={Listing} />
-            <Route path="/login" component={Login} />
-            <Route path="/details/:id" component={Details} />
-            <ProtectedRoute path="/listing" component={LoggedInListing} />
-            <ProtectedRoute path="/addlisting" component={AddListing} /> />
-        </Switch>
-    );
-};
-
-export default Router;
+export default connect(mapStateToProps)(Router)

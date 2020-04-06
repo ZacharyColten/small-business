@@ -34,11 +34,11 @@ class Login extends Component {
   login = (e) => {
     e.preventDefault()
     // set cookie here
-    document.cookie = "loggedIn=true;max-age=60*1000"
+    document.cookie = `loggedIn=true;max-age=${60*1000}`
     // set loggedIn = true and max-age = 60*1000 (one minute)
     const status = this.props.user.loggedIn
     this.props.toggleLogin(status)
-    window.location.replace("/listing")
+    // window.location.replace("/listing")
   }
 
   render() {

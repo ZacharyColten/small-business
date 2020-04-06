@@ -1,7 +1,14 @@
 
 import { combineReducers } from 'redux'
+import cookie from 'cookie'
 
-const user = (state = {}, action) => {
+const checkAuth = () => {
+    const cookies = cookie.parse(document.cookie)
+    // Check the cookies for a cookie called "loggedIn"
+    return cookies["loggedIn"]
+}
+
+const user = (state = { loggedIn: checkAuth() }, action) => {
     switch (action.type) {
         case 'TOGGLE_LOGIN':
             return {
