@@ -5,7 +5,7 @@ const user = (state = null, action) => {
     switch (action.type) {
         case 'TOGGLE_LOGIN':
             return {
-                loggedIn: "hello"
+                loggedIn: !action.value
             }
         default:
             return state

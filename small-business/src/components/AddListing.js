@@ -9,11 +9,13 @@ import {
 
 class AddListing extends Component {
     state = {
+        id:"",
         open: false,
         name: "",
         description: "",
         hours: "",
         address: ""
+        
     }
     toggleDialog = () => this.setState({ open: !this.state.open })
 
@@ -26,7 +28,7 @@ class AddListing extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const payload = { ...this.state }
-        payload.id = this.props.carTotal + 1
+        payload.id = this.props.listingTotal + 1
         delete payload.open
         this.props.addListing(payload)
         this.setState({ open: false })
