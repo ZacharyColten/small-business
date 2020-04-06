@@ -1,6 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
 
 const Navigation = (props) => {
   return (
@@ -33,4 +34,10 @@ const Navigation = (props) => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+      user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)
