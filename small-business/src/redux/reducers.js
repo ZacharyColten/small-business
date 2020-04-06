@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux'
 
-const user = (state = null, action) => {
+const user = (state = {}, action) => {
     switch (action.type) {
         case 'TOGGLE_LOGIN':
             return {
